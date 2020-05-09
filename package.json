@@ -5,13 +5,22 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node ./src/crowller.ts"
+    "dev:build": "tsc -w",
+    "dev:start": "nodemon node ./build/crowller.js",
+    "dev": "concurrently npm:dev:*"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "data/*"
+    ]
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/cheerio": "^0.22.17",
     "@types/superagent": "^4.1.7",
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.3",
     "ts-node": "^8.8.2",
     "typescript": "^3.8.3"
   },

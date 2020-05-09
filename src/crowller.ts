@@ -10,16 +10,16 @@ export interface Analyzer {
 class Crowller {
     private filePath = path.resolve(__dirname, '../data/course.json')
     
-    async getRawHtml() {
+    private async getRawHtml() {
         const result = await superagent.get(this.url)
         return result.text
     }
 
-    writeFile(content:string) {
+    private writeFile(content:string) {
         fs.writeFileSync(this.filePath, content)
     }
 
-    async initSpiderProcess() {
+    private async initSpiderProcess() {
         const html = await this.getRawHtml()
         const fileContent = this.analyzer.analyze(html, this.filePath)
         this.writeFile(fileContent)
@@ -32,5 +32,6 @@ class Crowller {
 
 const secret = 'x3b174jsx'
 const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`
-const analyzer = new DellAnalyzer()
+// const analyzer = new DellAnalyzer()
+const analyzer = DellAnalyzer.getInstance()
 new Crowller(url, analyzer)
