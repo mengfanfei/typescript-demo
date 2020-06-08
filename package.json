@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tsc && node ./build/controller/LoginController.js",
     "dev:build": "tsc -w",
     "dev:start": "nodemon node ./build/index.js",
     "dev": "tsc && concurrently npm:dev:*"
@@ -31,6 +31,7 @@
     "cheerio": "^1.0.0-rc.3",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
+    "reflect-metadata": "^0.1.13",
     "superagent": "^5.2.2"
   }
 }
