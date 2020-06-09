@@ -33,7 +33,7 @@ export class CrowllerController {
     const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`
     const analyzer = Analyzer.getInstance()
     new Crowller(url, analyzer)
-    res.json(getResponseData(true))
+    res.json(getResponseData<responseResult.getData>(true))
   }
 
   @get('/showData')
@@ -42,10 +42,9 @@ export class CrowllerController {
     try {
       const position = path.resolve(__dirname, '../../data/course.json')
       const result = fs.readFileSync(position, 'utf8')
-      res.json(JSON.parse(result))
-      res.json(getResponseData(JSON.parse(result)))
+      res.json(getResponseData<responseResult.showData>(JSON.parse(result)))
     } catch (error) {
-      res.json(getResponseData(false, '数据不存在'))
+      res.json(getResponseData<responseResult.showData>(false, '数据不存在'))
     }
   }
 }
